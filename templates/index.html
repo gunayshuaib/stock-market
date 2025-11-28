@@ -6,7 +6,6 @@
 </head>
 <body>
   <h1>Last 1 Month Stock Overview</h1>
-
   <div id="charts"></div>
 
   <script>
@@ -15,6 +14,7 @@
     async function loadChart(name) {
       const res = await fetch(`/data/${name}`);
       const d = await res.json();
+      if (!d.dates.length) return;
 
       const canvas = document.createElement("canvas");
       document.getElementById("charts").appendChild(canvas);
@@ -29,6 +29,13 @@
             borderWidth: 2,
             fill: false
           }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            x: { display: true },
+            y: { display: true }
+          }
         }
       });
     }
