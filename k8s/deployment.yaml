@@ -15,14 +15,14 @@ spec:
       containers:
       - name: stock-dashboard
         image: ghcr.io/gunayshuaib/stock-dashboard:latest
+        imagePullSecrets:
+        - name: ghcr-secret
         ports:
         - containerPort: 5000
         readinessProbe:
           httpGet:
             path: /
             port: 5000
-      imagePullSecrets:
-      - name: ghcr-secret
           initialDelaySeconds: 5
           periodSeconds: 10
         livenessProbe:
