@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: stock-dashboard
-        image: ghcr.io/ORG/REPO:latest
+        image: ghcr.io/gunayshuaib/stock-dashboard:latest
         ports:
         - containerPort: 5000
         readinessProbe:
