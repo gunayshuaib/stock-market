@@ -21,10 +21,8 @@ def fetch_last_month(symbol):
     start = end - timedelta(days=30)
     ticker = yf.Ticker(symbol)
     df = ticker.history(start=start, end=end)
-    
     if df.empty:
         return {"dates": [], "close": []}
-    
     df = df.reset_index()
     df['Date'] = df['Date'].dt.strftime('%Y-%m-%d')
     return {"dates": df['Date'].tolist(), "close": df['Close'].round(2).tolist()}
@@ -41,4 +39,4 @@ def data(name):
     return jsonify(fetch_last_month(symbol))
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

@@ -3,6 +3,11 @@
 <head>
   <title>Stock Market Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial; padding: 1rem; background: #f0f0f0; }
+    #charts { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    canvas { background: #fff; border-radius: 8px; padding: 1rem; }
+  </style>
 </head>
 <body>
   <h1>Last 1 Month Stock Overview</h1>
@@ -27,16 +32,11 @@
             label: name,
             data: d.close,
             borderWidth: 2,
-            fill: false
+            fill: false,
+            borderColor: '#'+Math.floor(Math.random()*16777215).toString(16)
           }]
         },
-        options: {
-          responsive: true,
-          scales: {
-            x: { display: true },
-            y: { display: true }
-          }
-        }
+        options: { responsive: true, scales: { x: { display: true }, y: { display: true } } }
       });
     }
 
