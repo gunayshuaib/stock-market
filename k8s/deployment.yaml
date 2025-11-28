@@ -21,6 +21,8 @@ spec:
           httpGet:
             path: /
             port: 5000
+      imagePullSecrets:
+      - name: ghcr-secret
           initialDelaySeconds: 5
           periodSeconds: 10
         livenessProbe:
