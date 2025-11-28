@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stock Market Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Last 1 Month Stock Overview</h1>
+
+  <div id="charts"></div>
+
+  <script>
+    const symbols = {{ symbols|tojson }};
+    
+    async function loadChart(name) {
+      const res = await fetch(`/data/${name}`);
+      const d = await res.json();
+
+      const canvas = document.createElement("canvas");
+      document.getElementById("charts").appendChild(canvas);
+
+      new Chart(canvas.getContext("2d"), {
+        type: "line",
+        data: {
+          labels: d.dates,
+          datasets: [{
+            label: name,
+            data: d.close,
+            borderWidth: 2,
+            fill: false
+          }]
+        }
+      });
+    }
+
+    symbols.forEach(loadChart);
+  </script>
+</body>
+</html>
